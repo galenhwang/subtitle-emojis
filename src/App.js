@@ -3,6 +3,13 @@ import './App.css';
 import "video-react/dist/video-react.css";
 import { parse } from 'subtitle';
 
+const translate = require('moji-translate');
+const Sentiment = require('sentiment');
+// const GoogleImages = require('google-images');
+
+const sentiment = new Sentiment();
+// const imageClient = new GoogleImages('015181646880705829017:69kghjmkjbu', 'AIzaSyC7MbpPBw7DW0NLbbgAWpCm5kbwZRq8rwE');
+
 class App extends Component {
   subtitleArray = undefined;
 
@@ -15,8 +22,21 @@ class App extends Component {
 
   state = {
       currentTime: undefined,
-      currentSubtitle: undefined,
+      currentSubtitle: "",
       movieName: undefined,
+      subtitleChanged: false,
+      emojiWords: [],
+      positiveEmoji: false,
+      posEmo: "",
+      negativeEmoji: false,
+      negEmo: ""
+  }
+
+  renderEmoji = e => {
+    e.preventDefault();
+    if (this.state.positiveWords === true) {
+      return true;
+    }
   }
 
   getTime = async (e) => {
@@ -27,24 +47,68 @@ class App extends Component {
     });
     this.subtitleArray.some(
       (subtitle) => {
-        if (subtitle.start < this.state.currentTime && subtitle.end > this.state.currentTime) {
+        if (subtitle.start < this.state.currentTime
+          && subtitle.end > this.state.currentTime
+        && this.state.currentSubtitle !== subtitle.text ) {
           this.setState({
-            currentSubtitle: subtitle.text
+            currentSubtitle: subtitle.text,
+            subtitleChanged: true,
+            emojiWords: [],
+            positiveEmoji: false,
+            negativeEmoji: false
+          });
+          let result = sentiment.analyze(subtitle.text);
+          if (result.hasOwnProperty('positive')) {
+            if (result.positive.length > 0) {
+              result.positive.forEach((e) => {
+                console.log("positive " + e);
+                this.setState({
+                  emojiWords: this.state.emojiWords.concat([e])
+                });
+              });
+              this.setState({
+                positiveEmoji: true,
+                posEmo: translate.getEmojiForWord("happy")
+              });
+            }
+            // result.positive.forEach((word) => {
+            //   this.setState({
+            //     emojiWords: this.state.emojiWords.concat([word])
+            //   })
+            //   console.log(word);
+            // });
+          }
+          if (result.hasOwnProperty('negative')) {
+            if (result.negative.length > 0) {
+              result.negative.forEach((e) => {
+                console.log("negative " + e);
+                this.setState({
+                  emojiWords: this.state.emojiWords.concat([e])
+                });
+              });
+              // result.negative.forEach((e) => { console.log(e)});
+              this.setState({
+                negativeEmoji: true,
+                negEmo: translate.getEmojiForWord("sad")
+              });
+              }
+          }
+        } else {
+          this.setState({
+            subtitleChanged: false
           });
         }
       }
     );
-    console.log("nope" + player.currentTime);
   }
 
   render() {
     return (
       <div className="App">
-        <h1> Breaking Bad, Season 5 Episode 13 </h1>
+        <h1> Breaking Bad </h1>
         <div className="Player">
-          <video width="320"
+          <video
             controls
-            poster="https://video-react.js.org/assets/poster.png"
             onTimeUpdate={this.getTime}>
             <source
               src="http://206.189.195.115/videos/c8btp7ydmi855cxqqhgaa3yk7c.mp4"
@@ -53,6 +117,22 @@ class App extends Component {
           </video>
         </div>
         <p> {this.state.currentSubtitle} </p>
+        <div> {this.state.emojiWords.length > 0 &&
+            <p> Words: {this.state.emojiWords.toString()}</p>
+          }
+        </div>
+        <div> {this.state.positiveEmoji &&
+            <p>
+              {this.state.posEmo}
+            </p>
+          }
+        </div>
+        <div> {this.state.negativeEmoji &&
+            <p>
+              {this.state.negEmo}
+            </p>
+          }
+        </div>
       </div>
     );
   }
