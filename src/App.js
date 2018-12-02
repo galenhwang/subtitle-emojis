@@ -40,13 +40,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1> Breaking Bad, Season 5 Episode 13 </h1>
         <div className="Player">
           <video width="320"
             controls
             poster="https://video-react.js.org/assets/poster.png"
             onTimeUpdate={this.getTime}>
             <source
-              src="./stock_footage.mp4"
+              src="http://206.189.195.115/videos/c8btp7ydmi855cxqqhgaa3yk7c.mp4"
              type="video/mp4"
             />
           </video>
