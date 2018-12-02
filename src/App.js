@@ -23,6 +23,7 @@ class App extends Component {
   state = {
       currentTime: undefined,
       currentSubtitle: "",
+      emojiSubtitle: "",
       movieName: undefined,
       subtitleChanged: false,
       emojiWords: [],
@@ -52,12 +53,17 @@ class App extends Component {
         && this.state.currentSubtitle !== subtitle.text ) {
           this.setState({
             currentSubtitle: subtitle.text,
+            emojiSubtitle: translate.translate(subtitle.text),
+            sentimentScore: undefined,
             subtitleChanged: true,
             emojiWords: [],
             positiveEmoji: false,
             negativeEmoji: false
           });
           let result = sentiment.analyze(subtitle.text);
+          this.setState({
+            sentimentScore: result.score
+          });
           if (result.hasOwnProperty('positive')) {
             if (result.positive.length > 0) {
               result.positive.forEach((e) => {
@@ -116,7 +122,14 @@ class App extends Component {
             />
           </video>
         </div>
-        <p> {this.state.currentSubtitle} </p>
+        <br>
+        </br>
+        <p> Sentiment Score (from -5 to 5):
+          {this.state.sentimentScore} </p>
+        <b> Regular: </b>
+        <p>{this.state.currentSubtitle} </p>
+        <b> EmoCi-ed: </b>
+        <p> {this.state.emojiSubtitle} </p>
         <div> {this.state.emojiWords.length > 0 &&
             <p> Words: {this.state.emojiWords.toString()}</p>
           }
