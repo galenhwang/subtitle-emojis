@@ -117,7 +117,7 @@ class App extends Component {
             controls
             onTimeUpdate={this.getTime}>
             <source
-              src="http://206.189.195.115/videos/c8btp7ydmi855cxqqhgaa3yk7c.mp4"
+              src="http://206.189.195.115/videos/tg7zrobw3fga9qi3cn66uz3cmh.mp4"
              type="video/mp4"
             />
           </video>
