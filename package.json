@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-images": "^2.1.0",
+    "moji-translate": "^1.0.8",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "sentiment": "^5.0.1",
+    "subtitle": "^2.0.1",
+    "video-react": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
