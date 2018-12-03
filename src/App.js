@@ -9,6 +9,7 @@ const Sentiment = require('sentiment');
 
 const sentiment = new Sentiment();
 // const imageClient = new GoogleImages('015181646880705829017:69kghjmkjbu', 'AIzaSyC7MbpPBw7DW0NLbbgAWpCm5kbwZRq8rwE');
+const mp4Link = "http://142.93.192.174/videos/6aznh6qe4pdxtky99ac3rn8hqy.mp4";
 
 class App extends Component {
   subtitleArray = undefined;
@@ -117,7 +118,7 @@ class App extends Component {
             controls
             onTimeUpdate={this.getTime}>
             <source
-              src="http://206.189.195.115/videos/tg7zrobw3fga9qi3cn66uz3cmh.mp4"
+              src={mp4Link}
              type="video/mp4"
             />
           </video>
