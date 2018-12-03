@@ -28,4 +28,4 @@ Our goal is help 6.8 million viewers who have hearing disabilities to better enj
 To see our UBC Local Hack Day 2018 presentation, see our Google Slides [here](https://docs.google.com/presentation/d/1yDH5noHegAFmuNkvMGYl2SVP51hDZ8HBX9l89lBQPfs/edit?usp=sharing).
 
 ## Our mockup:
-<img src= "public/emociMockup.png" width="500 px">
+<img src= "public/emociMockup.jpg" width="500 px">
