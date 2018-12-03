@@ -1,44 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# EmoCi
 
-## Available Scripts
+<img src= "public/emociLogo.png" width="300 px">
 
-In the project directory, you can run:
+<img src= "public/emociScreenshot.png" width="500 px">
 
-### `npm start`
+Emotions that you can see.
+
+## To start:
+
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Our story:
 
-### `npm test`
+For people with hearing disabilities, EmoCi helps them better depict the emotions behind the words on screen when they watch movies or TV.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Although subtitles and closed captions tell deaf and hearing impaired people what is being said, they fail to communicate how it is being said. This “emotional gap” experienced by viewer’s highlights a significant drawback to current subtitles especially when used for learning by the deaf.
 
-### `npm run build`
+**Our project EmoCi deploys the advanced tone recognition technology to enable emotion classification based on speech or audio. In the backend, we would be feeding CNN (Convolutional Neural Network) with the audio speeches segments in the movie. The output of this would be the emotion with the highest score, and the web application would display this as an emoji in front-end.**
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For the purpose of demo, we simplified this by generating an emoji whenever a positive/negative sentiment was observed in the subtitle line. For the tech stack, we used React for the front-end, as well as the emoji-translate API for generating the proper positive/negative emoji, and sentiment API for running NLP on each line read by an actor in the subtitles.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Our goal is help 6.8 million viewers who have hearing disabilities to better enjoy movies and TV on Netflix. EmoCi also assists people who are learning second languages in better comprehending the cross-cultural content of their learning materials. In a word, EmoCi helps build a better world that is more accessible to deaf and hearing impaired people, more inclusive for every movie lover , and more diverse by enhancing cross-community learning experience.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To see our UBC Local Hack Day 2018 presentation, see our Google Slides [here](https://docs.google.com/presentation/d/1yDH5noHegAFmuNkvMGYl2SVP51hDZ8HBX9l89lBQPfs/edit?usp=sharing).
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Our mockup:
+<img src= "public/emociMockup.jpg" width="500 px">
